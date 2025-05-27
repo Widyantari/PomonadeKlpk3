@@ -1,5 +1,11 @@
 # POMONADE: Pomonodoro Timer Web App
-:tomato: Pomodoro timer built with React
+🍋 Pomodoro timer built using React.js and implementing CI/CD pipeline
+
+## Development Operating System A
+## Group Members:
+* Silfia Mei Wulandari (5026221073)
+* Widyantari Nuriyanti (5026221137)
+* Sheva Aulia (5026221145)
 
 ### [Live Demo](https://luizbatanero.github.io/pomodoro-react/)
 
@@ -8,8 +14,9 @@
 ## Features
 
 * Keyboard Shortcuts
-* HTML5 Notification
 * Audio Notification
+* Updateable notes
+* Adjustable timer
 
 ## Running Locally
 
