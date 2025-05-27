@@ -14,6 +14,8 @@ class Pomodoro extends Component {
     this.state = {
       selectedType: props.types[0],
       time: props.types[0].time,
+      customMinutes: '',
+      customSeconds: '',
       interval: null,
       running: false,
       sound:
@@ -56,21 +58,27 @@ class Pomodoro extends Component {
 
   changeType = type => {
     this.resetTimer();
-    this.setState({ selectedType: type, time: type.time, running: false });
+    this.setState({ selectedType: type, time: type.time, running: false, customMinutes: '', customSeconds: '' });
   };
 
   tick = () => {
-    if (this.state.time <= 1) {
+    if (this.state.time <= 0) {
       this.stopInterval();
-      this.setState({ running: false });
+      this.setState({ running: false, time: 0 });
       if (this.state.sound) this.sound.play();
-      try {
-        navigator.serviceWorker.register('service-worker.js').then(sw => {
-          sw.showNotification(`${this.state.selectedType.name} finished!`);
-        });
-      } catch (e) {
-        console.log('Notification error', e);
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(registration => {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              registration.showNotification(`${this.state.selectedType.name} finished!`);
+            } else {
+              console.log('Notification permission denied.');
+              // Anda bisa menampilkan pesan di UI sebagai alternatif notifikasi di sini
+            }
+          });
+        }).catch(error => console.error('Error registering service worker', error));
       }
+      return;
     }
     this.setState(state => ({ time: state.time - 1 }));
   };
@@ -81,11 +89,26 @@ class Pomodoro extends Component {
   };
 
   startTimer = () => {
-    this.setState(state => ({
+    let initialTime;
+    const parsedMinutes = parseInt(this.state.customMinutes, 10);
+    const parsedSeconds = parseInt(this.state.customSeconds, 10);
+
+    if (!isNaN(parsedMinutes) || !isNaN(parsedSeconds)) {
+      const totalSeconds = (isNaN(parsedMinutes) ? 0 : parsedMinutes) * 60 + (isNaN(parsedSeconds) ? 0 : parsedSeconds);
+      if (totalSeconds > 0) {
+        initialTime = totalSeconds;
+      } else {
+        initialTime = this.state.selectedType.time;
+      }
+    } else {
+      initialTime = this.state.selectedType.time;
+    }
+
+    this.setState({
       running: true,
       interval: setInterval(this.tick, 1000),
-      time: state.time > 0 ? state.time : state.selectedType.time
-    }));
+      time: initialTime // Set waktu berdasarkan perhitungan di atas
+    });
     this.sound.pause();
     this.sound.currentTime = 0;
   };
@@ -94,7 +117,9 @@ class Pomodoro extends Component {
     this.stopInterval();
     this.setState(state => ({
       time: state.selectedType.time,
-      running: false
+      running: false,
+      customMinutes: '',
+      customSeconds: ''
     }));
   };
 
@@ -140,18 +165,44 @@ class Pomodoro extends Component {
     );
   };
 
+  handleCustomTimeChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
-    const { time, selectedType, sound, taskStatus } = this.state;
+    const { time, selectedType, sound, taskStatus, customMinutes, customSeconds } = this.state;
     const { types } = this.props;
 
     return (
       <div className="Content">
         <div className="Pomodoro">
+          <h1>Pomonade</h1> {/* <-- Tambahkan judul di sini */}
+          <h3>Pomodoro Timer App</h3>
           <TypeSelect
             types={types}
             selected={selectedType}
             changeType={this.changeType}
           />
+          <div className="custom-time-input">
+            <input
+              type="number"
+              name="customMinutes"
+              placeholder="minutes"
+              value={customMinutes}
+              onChange={this.handleCustomTimeChange}
+              min="0"
+            />:
+            <input
+              type="number"
+              name="customSeconds"
+              placeholder="seconds"
+              value={customSeconds}
+              onChange={this.handleCustomTimeChange}
+              min="0"
+              max="59"
+            />
+          </div>
           <TimeDisplay
             time={time}
             status={this.getStatus()}

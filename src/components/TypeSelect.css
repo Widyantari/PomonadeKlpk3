@@ -1,39 +1,50 @@
 .TypeSelect {
-    width: 400px;
-    display: flex;
+  width: 400px;
+  display: flex;
 }
 
 @media screen and (max-width: 500px) {
-    .TypeSelect {
-        width: 100%;
-    }
+  .TypeSelect {
+    width: 100%;
+  }
 }
 
 .TypeSelect button {
-    flex: 1;
-    border: 2px solid #ccc;
-    border-right: 0;
-    background: transparent;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    padding: 10px;
-    color: #999;
-    outline: 0;
-    transition: all .3s;
-    cursor: pointer;
+  flex: 1;
+  border: 1px solid #ccc; /* Ubah ketebalan border */
+  border-right: 0;
+  background-color: #f8f8f8; /* Tambah warna latar belakang default */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  color: #666; /* Ubah warna teks default */
+  outline: 0;
+  transition: all 0.3s ease; /* Tambah transisi untuk efek hover halus */
+  cursor: pointer;
 }
 
 .TypeSelect button:first-child {
-    border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 .TypeSelect button:last-child {
-    border-right: 2px solid #ccc;
-    border-radius: 0 5px 5px 0;
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+}
+
+.TypeSelect button:hover {
+  background-color: #eee; /* Warna latar belakang saat hover */
+  color: #333; /* Warna teks saat hover */
 }
 
 .TypeSelect button.active {
-    background: #fff;
-    color: #D9534F;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
+  background: #fff;
+  color: #D9534F;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
+  border-color: #D9534F; /* Sesuaikan warna border saat aktif */
+}
+
+.TypeSelect button.active:hover {
+  background: #fff; /* Jaga warna latar belakang tetap putih saat aktif dan dihover */
+  color: #D9534F;
 }

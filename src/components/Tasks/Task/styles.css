@@ -4,3 +4,28 @@
   cursor: grabbing;
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* ... CSS lainnya ... */
+
+.delete-button {
+  background: #f44336; /* Warna latar belakang merah */
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px; /* Kurangi margin kiri */
+  padding: 5px 8px; /* Kurangi padding */
+  font-size: 12px; /* Perkecil ukuran font */
+  border-radius: 5px; /* Tambah border radius */
+  outline: none;
+  transition: background-color 0.2s ease; /* Efek hover halus */
+  font-family: 'Roboto', sans-serif; /* Font yang sama */
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Warna latar belakang saat hover */
+}
+
+.delete-button:active {
+  background-color: #b71c1c; /* Warna latar belakang saat ditekan */
+  transform: translateY(1px); /* Efek sedikit tertekan */
+}

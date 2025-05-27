@@ -49,3 +49,83 @@
   text-align: center;
   cursor: pointer;
 }
+
+.Task-add {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px; /* Tambah padding */
+  border-top: 1px solid #eee;
+  background-color: #f9f9f9; /* Tambah background color */
+  border-radius: 8px; /* Tambah border radius */
+}
+
+.Task-add input {
+  flex-grow: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Tambah border radius */
+  margin-right: 10px;
+  font-size: 16px; /* Sedikit perbesar font */
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Tambah box shadow halus */
+}
+
+.Task-add input:focus {
+  border-color: #D9534F; /* Warna border saat fokus */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 5px rgba(217, 83, 79, 0.2); /* Tambah shadow saat fokus */
+}
+
+.Task-add .add-button {
+  padding: 10px 16px;
+  background-color: #D9534F; /* Warna latar belakang utama */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Tambah border radius */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s ease; /* Tambah transition */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Tambah box shadow */
+  outline: none;
+}
+
+.Task-add .add-button:hover {
+  background-color: #b64441; /* Warna latar belakang saat hover */
+}
+
+.Task-add .add-button:active {
+  background-color: #933532; /* Warna latar belakang saat ditekan */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); /* Ubah shadow saat ditekan */
+  transform: translateY(1px); /* Efek sedikit tertekan */
+}
+
+.Task span {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif; /* Font yang sama */
+  background-color: #f9a825; /* Warna latar belakang "On Progress" (kuning/oranye) */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: white;
+  font-size: 12px; /* Ukuran font disamakan dengan Delete */
+  margin: 0 0.5em; /* Sesuaikan margin */
+  padding: 5px 8px; /* Padding disamakan dengan Delete */
+  white-space: nowrap;
+  width: auto; /* Biarkan lebar menyesuaikan konten */
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Efek hover halus */
+}
+
+.Task span:hover {
+  background-color: #f57c00; /* Warna latar belakang saat hover */
+}
+
+.Task span.active { /* Untuk status "Done" */
+  background-color: #4caf50; /* Warna latar belakang hijau untuk "Done" */
+}
+
+.Task span.active:hover {
+  background-color: #388e3c; /* Warna latar belakang hover untuk "Done" */
+}
