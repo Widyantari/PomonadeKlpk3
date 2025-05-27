@@ -1,4 +1,4 @@
-# Pomodoro Timer
+# POMONADE: Pomonodoro Timer Web App
 :tomato: Pomodoro timer built with React
 
 ### [Live Demo](https://luizbatanero.github.io/pomodoro-react/)
