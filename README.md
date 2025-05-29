@@ -6,6 +6,7 @@
 * Silfia Mei Wulandari (5026221073)
 * Widyantari Nuriyanti (5026221137)
 * Sheva Aulia (5026221145)
+* Achmad Hussein A (5026211134)
 
 ### [Live Demo](https://luizbatanero.github.io/pomodoro-react/)
 
